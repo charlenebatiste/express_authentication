@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const passport = require('../config/ppConfig');
+const db = require('../models')
 
 router.get('/signup', (req, res) => {
   res.render('auth/signup');
@@ -49,7 +50,7 @@ router.post('/signup', async (req, res) => {
         // There was an error that came back; therefore, we just have the user try again
         console.log('**************Error');
         console.log(error);
-        req.flash('error', 'Either email or password is incorrect. Please try again.');
+        req.flash('error', 'Either email or password is incorrect. Please try again.'); //notice to the user that something went wrong
         res.redirect('/auth/signup');
   }
 });
