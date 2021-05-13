@@ -14,6 +14,14 @@ router.get('/login', (req, res) => {
   res.render('auth/login');
 });
 
+// GET ROUTE TO LOG OUT
+
+router.get('/logout', (req, res) => {
+  req.logOut(); // logs the user out of the session
+  req.flash('success', 'Logging out... See you next time!');
+  res.redirect('/');
+});
+
 // POST ROUTE
 
 router.post('/login', passport.authenticate('local', {
