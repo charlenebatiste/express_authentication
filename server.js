@@ -27,6 +27,11 @@ app.use(session({
 
 app.use(flash());            // flash middleware
 
+app.use(passport.initialize());      // Initialize passport
+app.use(passport.session());         // Add a session
+
+// lines 30 and 31 need to be placed before the app.use that includes req.flash()
+
 app.use((req, res, next) => {
   console.log(res.locals);
   res.locals.alerts = req.flash();
@@ -34,8 +39,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(passport.initialize());      // Initialize passport
-app.use(passport.session());         // Add a session
+
 
 
 // GET ROUTES
